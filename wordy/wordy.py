@@ -25,10 +25,6 @@ def answer(question: str) -> int:
 
     while "by" in equation: # second cleanup
         equation.remove("by")
-
-    # aux = [not digit.replace('-','').isdigit() if not i%2 \
-    #        else digit.replace('-','').isdigit() \
-    #        for i, digit in enumerate(equation)]
         
     if any(not digit.replace('-','').isdigit() if not i%2 \
            else digit.replace('-','').isdigit() \
@@ -59,5 +55,3 @@ def answer(question: str) -> int:
         raise ValueError("syntax error")
     
     return result
-    
-# print(answer("What is 52 cubed?"))
