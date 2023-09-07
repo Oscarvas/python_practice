@@ -12,5 +12,4 @@ def rows(letter: str):
         aux[i] = str(letr)
         diamond.append(''.join(aux)[::-1] + ''.join(aux[1:]) )
 
-    backwards = diamond[::-1]
-    return diamond + backwards[1:]
+    return diamond + diamond[::-1][1:]
