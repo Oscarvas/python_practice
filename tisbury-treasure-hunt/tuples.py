@@ -1,14 +1,14 @@
 """Functions to help Azara and Rui locate pirate treasure."""
 
 
-def get_coordinate(record):
+def get_coordinate(record: tuple):
     """Return coordinate value from a tuple containing the treasure name, and treasure coordinate.
 
     :param record: tuple - with a (treasure, coordinate) pair.
     :return: str - the extracted map coordinate.
     """
 
-    pass
+    return record[1]
 
 
 def convert_coordinate(coordinate):
@@ -18,7 +18,7 @@ def convert_coordinate(coordinate):
     :return: tuple - the string coordinate split into its individual components.
     """
 
-    pass
+    return tuple(coordinate,)
 
 
 def compare_records(azara_record, rui_record):
@@ -29,7 +29,7 @@ def compare_records(azara_record, rui_record):
     :return: bool - do the coordinates match?
     """
 
-    pass
+    return tuple(azara_record[1]) in rui_record
 
 
 def create_record(azara_record, rui_record):
@@ -40,10 +40,10 @@ def create_record(azara_record, rui_record):
     :return: tuple or str - the combined record (if compatible), or the string "not a match" (if incompatible).
     """
 
-    pass
+    return azara_record + rui_record if tuple(azara_record[1]) in rui_record else 'not a match'
 
 
-def clean_up(combined_record_group):
+def clean_up(combined_record_group: tuple[tuple[str|tuple]]):
     """Clean up a combined record group into a multi-line string of single records.
 
     :param combined_record_group: tuple - everything from both participants.
@@ -53,5 +53,18 @@ def clean_up(combined_record_group):
 
     (see HINTS.md for an example).
     """
+    result = ""
 
-    pass
+    for combination in combined_record_group:
+        result += "("
+
+        for index, data in enumerate(combination):
+            if index == 1: continue
+
+            if type(data) is tuple:
+                result += f"('{data[0]}', '{data[1]}'), "
+            else:
+                result += f"'{data}'{', ' if result[-3:]!= '), ' else ''}"
+
+        result += ")\n"
+    return result
